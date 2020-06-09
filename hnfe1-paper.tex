@@ -12,6 +12,7 @@
 \usepackage[official]{eurosym}
 %\usepackage{mathrsfs}
 %\usepackage{amsmath}
+\usepackage{caption}
 
 % fix wrong first quotation marks. Usually you would need to write ``quote'' to have well-typesetted quotes.
 \usepackage [english]{babel}
@@ -49,6 +50,9 @@
 	\endoldquote\addvspace{\bigskipamount}}
 
 \begin{document}
+
+% for figures: caption label is italic, the caption text is bold / italic
+\captionsetup[figure]{labelfont={bf, small},textfont={it, small}}
 
 \begin{center}
 % \vspace*{1cm}
@@ -92,7 +96,7 @@
 \pagenumbering{Roman}
 \tableofcontents
 \pagebreak
-%\listoffigures
+\listoffigures
 %\listoftables
 \newpage
 \newlist{abbrv}{itemize}{1}
@@ -147,8 +151,17 @@ More recent studies, while acknowledging the large uncertainty, account for grea
 It is, therefore, reasonable to assume that the health emergency caused more causalities that the enormous toll of World War I.
 
 While influenza outbreaks before and after the 1918 flu pandemic mainly caused worse courses of the disease and a larger death toll on the very young and elderly population ("U-shape"),
-the outbreak in 1918 displayed an uncommon W-shape by additionally killing many otherwise healthy young adults aged 20-40 \citep{taubenberger1918InfluenzaMother2006}\footnote{
-	See figures 2 and 3 in \cite{taubenberger1918InfluenzaMother2006} for detailed age profiles of incidences and causalities of the 1918 flu pandemic in comparison to the normal influenza shortly before and after.}.
+the outbreak in 1918 displayed an uncommon W-shape by additionally killing many otherwise healthy young adults aged 20-40 \citep{taubenberger1918InfluenzaMother2006}.
+Figure \ref{fig_cfr} visualizes those two distinct case fatality rates by age group from influenza and pneumonia during the 1918 flu pandemic compared with a regular flu season ten years later.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[]{plots/cfr.pdf}
+	\caption[Case Fatality Rate from Influenza and Pneumonia During the 1918 Flu Pandemic Compared to the Regular Flu Season 1928--29]{Case Fatality Rate from Influenza and Pneumonia During the 1918 Flu Pandemic Compared to the Regular Flu Season 1928--29.
+	Adopted from figure 3, panel C in \cite{taubenberger1918InfluenzaMother2006}, based on data from the US Public Health Service
+	house-to-house surveys.}
+	\label{fig_cfr}
+\end{figure}
 
 Especially this ruthlessness on people in their prime working age came with significant implications for the economy.
 While this section focused on the broader health consequences of the pandemic, the next part examines the economic consequences of the devastating 1918 flu pandemic.
