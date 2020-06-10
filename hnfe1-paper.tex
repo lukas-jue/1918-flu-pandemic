@@ -19,9 +19,13 @@
 \usepackage[autostyle, english = american]{csquotes}
 \MakeOuterQuote{"}
 
+\usepackage{mathrsfs}
+\usepackage{amsmath}
 \usepackage{verbatim}
+\usepackage[usenames,dvipsnames]{color}     %for R colors and formatting
 \usepackage{epstopdf} % to include eps files
 \usepackage{enumitem} % for the abbreviations table
+\usepackage{listings} % for code listing
 
 % Define Fonts
 %\usepackage{helvet} %Arial
@@ -38,6 +42,29 @@
 \newcommand{\bs}{\boldsymbol}
 \pdfminorversion=7
 \bibliographystyle{agsm} %agsm BibTeX style for references
+
+\lstset{ %for R colors and formatting
+	language=R,                     % the language of the code
+	basicstyle=\scriptsize\ttfamily, % the size of the fonts that are used for the code
+	numbers=left,                   % where to put the line-numbers
+	numberstyle=\scriptsize\color{Blue},  % the style that is used for the line-numbers
+	stepnumber=1,                   % the step between two line-numbers. If it is 1, each line
+	% will be numbered
+	numbersep=5pt,                  % how far the line-numbers are from the code
+	backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
+	showspaces=false,               % show spaces adding particular underscores
+	showstringspaces=false,         % underline spaces within strings
+	showtabs=false,                 % show tabs within strings adding particular underscores
+	frame=single,                   % adds a frame around the code
+	rulecolor=\color{black},        % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+	tabsize=2,                      % sets default tabsize to 2 spaces
+	%captionpos=b,                   % sets the caption-position to bottom
+	breaklines=true,                % sets automatic line breaking
+	breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+	keywordstyle=\color{RoyalBlue},      % keyword style
+	commentstyle=\color{YellowGreen},   % comment style
+	stringstyle=\color{ForestGreen}      % string literal style
+} 
 
 %nice quotes
 %\let\oldquote\quote
@@ -56,6 +83,7 @@
 
 % for figures: caption label is italic, the caption text is bold / italic
 \captionsetup[figure]{labelfont={bf, small},textfont={it, small}, format=hang}
+\captionsetup[lstlisting]{labelfont={bf, small},textfont={it, small}, format=hang}
 \interfootnotelinepenalty=100000 %prevents footnotes from breaking across pages
 
 \begin{center}
@@ -73,7 +101,7 @@
   \begin{abstract}
   	Discussions of the Covid-19-induced health and economic crises often feature the adjective \textit{unprecedented}.
   	However, there exists historical precedent: The 1918 flu pandemic.
-  	By examining existing literature on its economic effects, this paper first highlights a consensus that most indicators (GDP, consumption, poverty rates, capital returns) were worsening as a result of the 1918 flu pandemic, possibly except for increased wages due to a labor supply shock.
+  	By examining existing literature on its economic effects, this paper first highlights a consensus that most indicators (GDP, consumption, poverty rates, capital income) were worsening as a result of the 1918 flu pandemic, possibly except for increased wages due to a labor supply shock.
   	However, estimates vary largely by study and evidence remains inconclusive.
   	This paper secondly discusses similarities and differences between the 1918 flu pandemic and Covid-19.
   	I conclude that a direct projection from 1918 to 2020 is difficult and economic predictions based on the historical event might be imprecise.
@@ -111,6 +139,7 @@
  
 \begin{abbrv}
  
+\item[CFR]			Case Fatality Rate
 \item[GDP]			Gross Domestic Product
 \item[GNI]			Gross National Income
 \item[NPI]			Non-pharmaceutical Intervention
@@ -147,8 +176,8 @@ Thus, the last part discusses notable differences between the 1918 flu pandemic 
 %However, a significant share of those deaths is not directly attributed to military conflict,
 %but to the second devastating event overlapping with the end of the military conflict and lasting at least until 1919: The 1918 flu pandemic.
 
-Beginning in March 1918, a novel virus likely emerged in mid-western parts of the United States \citep{barrySiteOrigin19182004} and spread virulently, possibly sped up by large troop movements to Europe due to World War I.
-It reached almost every part of the world within six months \citep{pattersonGeographyMortality19181991}.
+Beginning in March 1918, a novel virus likely emerged in mid-western parts of the United States \citep{barrySiteOrigin19182004} and spread virulently.
+Sped up by large troop movements to Europe due to World War~I, it reached almost every part of the world within six months \citep{pattersonGeographyMortality19181991}.
 In the course of three waves in the northern hemisphere's spring 1918, fall 1918, and winter/spring 1918/19, the virus infected approximately 500 million people, roughly one third of the entire world population at that time \citep{taubenberger1918InfluenzaMother2006}.
 Earlier research estimated the global death toll from the virus between 21.5 \citep{jordanEpidemicInfluenzaSurvey1927} and later up to 39.3 million \citep{pattersonGeographyMortality19181991}.
 More recent studies, while acknowledging the large uncertainty, account for greater under-reporting of causalities and hence estimate the global death toll between 50 and 100 million \citep{johnsonUpdatingAccountsGlobal2002}.
@@ -161,9 +190,9 @@ Figure \ref{fig_cfr} visualizes those two distinct case fatality rates from infl
 \begin{figure}[ht]
 	\centering
 	\includegraphics[]{plots/cfr.pdf}
-	\caption[Case Fatality Rate from Influenza and Pneumonia During the 1918 Flu Pandemic Compared to the Regular Flu Season 1928--29]{Case Fatality Rate from Influenza and Pneumonia During the 1918 Flu Pandemic Compared to the Regular Flu Season 1928--29.
-	Adopted from figure 3, panel C in \cite{taubenberger1918InfluenzaMother2006}, based on data from the US Public Health Service
-	house-to-house surveys.}
+	\caption[Case Fatality Rate from Influenza and Pneumonia by Age During the 1918 Flu Pandemic Compared to the Regular Flu Season 1928--29 and Covid-19 (2020)]{Case fatality rate (CFR) from influenza and pneumonia during the 1918 flu pandemic ("W-shape") compared to the regular flu season 1928--29 ("U-shape") in the United States and Covid-19 CFR in Germany.
+	CFR for 1918 and 1928 adopted from figure~3, panel~C in \cite{taubenberger1918InfluenzaMother2006}, based on data from the US Public Health Service house-to-house surveys.
+	Covid-19 CFR for Germany calculated by the author based on confirmed cases up until June~9\textsuperscript{th}, 2020 with data from \cite{robertkochinstituteCovid19CasesJune2020}}
 	\label{fig_cfr}
 \end{figure}
 
@@ -174,7 +203,7 @@ While this section focused on the broader health consequences of the pandemic, t
 
 By infecting one third of the world population and killing up to 100 million people, the 1918 flu pandemic not only caused grave health-related suffering, but also significantly influenced the course of the world economy.
 This section first examines the economic short-term consequences arising during the pandemic, highlighting increased rates of absenteeism and the immediate negative economic effects of non-pharmaceutical interventions (NPI) such as quarantines and temporary business shutdowns.
-In subsection \ref{sec:medlong}, attention turns to the medium- to long-term economic effects, including the development of economic indicators GDP, poverty rate, capital returns, and consumption. 
+In subsection \ref{sec:medlong}, attention turns to the medium- to long-term economic effects, including the development of economic indicators GDP, poverty rate, capital income, and consumption. 
 Further, it discusses loss of life and a potential negative impact on fetal health as factors adversely affecting the long-term economic course.
 
 
@@ -230,11 +259,13 @@ Those findings seem to be consistent for previous major pandemics \citep{jordaLo
 Lastly, this part concludes with the discussion of very long-term negative 1918 flu pandemic consequences through in utero exposure to the disease and related impact on socioeconomic outcomes \citep{almond1918InfluenzaPandemic2006}.
 
 Despite its historic significance, literature has only started paying closer attention on the economic consequences of the pandemic in 1918--19 during the past two decades\footnote{\cite{brainerdEconomicEffects19182003} note that prior to 2002, only \textit{two} known economics papers dealt with the 1918 flu pandemic's effects on the economy and neither of the three leading economic history textbooks at that time even mentioned the event.} and even more so recently due to Covid-19.
-\cite{karlssonImpact1918Spanish2014} look at well-documented economic performance in Sweden around the 1918 pandemic, exploiting both the fact that the country was neutral in World War~I and the large geographic differences in severity and timing of the disease to isolate the pandemic's direct effect on economic indicators.
-They estimate an 11\% reduction of capital returns in worse affected counties compared to lesser struck areas of Sweden\footnote{More precisely, this estimate refers to the comparison of two counties by excess mortality rate. There is an 11\% difference in capital returns between the 75\% and the 25\% quantile county ordered by excess mortality.}.
+\cite{karlssonImpact1918Spanish2014} look at well-documented economic indicators in Sweden around the 1918 pandemic, exploiting both the fact that the country was neutral in World War~I and the large geographic differences in severity and timing of the disease to isolate the pandemic's direct effect on economic indicators.
+They estimate an 11\% reduction of capital income in worse affected counties compared to lesser struck areas of Sweden\footnote{More precisely, this estimate refers to the comparison of two counties by excess mortality rate. There is an 11\% difference in capital income between the 75\% and 25\% percentile county, ordered by excess mortality.}.
 While this effect is mainly during the pandemic, they find evidence of a smaller permanent reduction in the medium-term.
 In addition, they find a strong and persistent medium-term increase in poverty rates that only becomes visible after the 1918 flu pandemic.
 Acknowledging one possible mechanism that leads to increased poverty---deceased breadwinners that leave dependents behind without income---\cite{karlssonImpact1918Spanish2014} argue that the effect was larger than could have been explained by this mechanism and therefore attribute most of the increased poverty to the pandemic \textit{per se}.
+\cite{karlssonImpact1918Spanish2014} again use the Swedish data to identify an increase in poverty rates of 9.7\%\footnote{Analogous to the difference in capital income, this refers to the difference between the 75\% and 25\% percentile county ordered by excess mortality.} due to the pandemic.
+Notably, this effect only came into effect after the 1918 flu pandemic ended.
 
 However, this finding is at first sight contradictory to a pandemic-induced medium-term increase in wages.
 The 1918 flu pandemic exercised a large death toll on working people in their 20s and 30s, additionally sickening a large number temporarily \citep{taubenberger1918InfluenzaMother2006}. 
@@ -314,6 +345,9 @@ Given the significant uncertainty that society faces today, an expedited further
 \clearpage
 \appendix
 %\section{Appendix}
+\section{R Code}
+
+\input{code/lst_cfr.tex}
 
 \clearpage
 \bibliography{library}
