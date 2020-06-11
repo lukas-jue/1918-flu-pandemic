@@ -13,6 +13,7 @@
 %\usepackage{mathrsfs}
 %\usepackage{amsmath}
 \usepackage{caption}
+\usepackage[small]{titlesec} % adjust size of section headings
 
 % fix wrong first quotation marks. Usually you would need to write ``quote'' to have well-typesetted quotes.
 \usepackage[english]{babel}
@@ -118,7 +119,7 @@
 %  in fulfillment of the requirements \\
 %  of the lecture \\\vspace{0.5cm}
   \textbf{Historical and Normative Foundations of Economics} \\\vspace{0.5cm}
-  June 15, 2020
+  June 11, 2020
   
 \end{center}
 
@@ -130,6 +131,9 @@
 \pagebreak
 \listoffigures
 %\listoftables
+\newpage
+\renewcommand\lstlistlistingname{List of R Code Chunks}
+\lstlistoflistings
 \newpage
 \newlist{abbrv}{itemize}{1}
 \setlist[abbrv,1]{label=,labelwidth=1in,align=parleft,itemsep=0.1\baselineskip,leftmargin=!}
@@ -185,7 +189,7 @@ It is, therefore, reasonable to assume that the health emergency caused more cau
 
 While influenza outbreaks before and after the 1918 flu pandemic mainly caused worse courses of the disease and a larger death toll on the very young and elderly population ("U-shape"),
 the outbreak in 1918 displayed an uncommon W-shape by additionally killing many otherwise healthy young adults aged 20-40 \citep{taubenberger1918InfluenzaMother2006}.
-Figure \ref{fig_cfr} visualizes those two distinct case fatality rates from influenza and pneumonia by age group during the 1918 flu pandemic compared with a regular flu season ten years later.
+Figure \ref{fig_cfr} visualizes those two distinct case fatality rates from influenza and pneumonia by age group during the 1918 flu pandemic compared with a regular flu season ten years later, as well as Covid-19 in Germany.
 
 \begin{figure}[ht]
 	\centering
@@ -196,8 +200,8 @@ Figure \ref{fig_cfr} visualizes those two distinct case fatality rates from infl
 	\label{fig_cfr}
 \end{figure}
 
-Especially this ruthlessness on people in their prime working age came with significant implications for the economy.
-While this section focused on the broader health consequences of the pandemic, the next part examines the economic consequences of the devastating 1918 flu pandemic.
+Especially the ruthlessness on people in their prime working age in 1918--1919 came with significant implications for the economy, which differ from the consequences of Covid-19. Section \ref{sec_comp} further discusses those different economic consequences of the two pandemics.
+While this part focused on the broader health consequences of the pandemic, the next section examines the economic consequences of the devastating 1918 flu pandemic.
 
 \section{Economic Consequences of the 1918 Flu Pandemic}
 
@@ -240,7 +244,7 @@ Due to lack of unambiguous data on the short-term effects, economists have highl
 \cite{garrettEconomicEffects19182007} reviews newspapers in 1918--19 in Little Rock, Arkansas, and Memphis, Tennessee, mentioning adverse effects on railway, mining and telephone service through lack of labor supply.
 Additionally, \cite{garrettEconomicEffects19182007} summarizes reported negative effects on consumption, noting that local department stores and merchants saw a decrease in revenue between 40\% and 70\%.
 
-While one could expect significant short-term negative effects on the overall economy based on these individual accounts, \cite{benmelech1918InfluenzaDid2020} note that---contrary to that expectation---at least the US economy did not suffer to the expected degree in the short term.
+While one could expect significant short-term negative effects on the overall economy based on these individual accounts, \cite{benmelech1918InfluenzaDid2020} note that---contrary to that expec\-tation---at least the US economy did not suffer to the expected degree in the short term.
 The authors highlight World War~I and the associated major role of the US government as the main procurer and significant employer that did not cut back spending due to the pandemic.
 In 1918, 38\% of Gross Domestic Product (GDP) were real government expenditures and the military directly employed 6\% of the American workforce \citep{benmelech1918InfluenzaDid2020}.
 Also, individual war-unrelated industries and businesses were hit by the pandemic, rebound was quick and the aggregate economy even grew by approximately 1\% in 1919 \citep{romerWorldWarPostwar1988}.
@@ -306,7 +310,7 @@ Notably, the 1918 flu cohort had a 20\% higher rate of disability in the 1980 ce
 Thereby, \cite{almond1918InfluenzaPandemic2006} sheds a light on possibly often omitted very long-term health and economic disadvantages that the affected cohorts carry over long after the pandemic ended.
 
 
-\section{Differences of the 1918 Flu Pandemic to Covid-19}
+\section{Differences of the 1918 Flu Pandemic to Covid-19} \label{sec_comp}
 
 It might be tempting to map the economic consequences of the 1918 flu pandemic to today's crisis.
 After all, both are considered worldwide pandemics causing severe respiratory diseases.
@@ -314,8 +318,9 @@ This section outlines why this would ignore several key differences in the medic
 
 One of the surprising medical characteristics of the 1918 virus remains the unusual deadliness for patients in their 20s and 30s \citep{taubenberger1918InfluenzaMother2006}.
 Contrarily, preliminary results show that the Covid-19 mortality distribution has its highest mass on the higher end of the population age and the probability of death for people far away from retirement age remains low \citep{weissClinicalCourseMortality2020, zhouClinicalCourseRisk2020}.
+See figure \ref{fig_cfr} for a direct comparison of the respective case fatality rates by age group.
 This has far reaching implications for the economic consequences.
-One effect of the 1918 flu pandemic was a medium- to long-term labor supply shock since a significant share of the working population deceased as a result of infection.
+One effect of the 1918 flu pandemic was a medium- to long-term labor supply shock, since a significant share of the working population deceased as a result of infection.
 As discussed in the previous section, this might have led to substantially higher wages in the following years, making it one of the few economic silver linings from a workers' point of view.
 Health-wise, today's younger generation is more lucky.
 However, this might translate to even more devastating labor market consequences, since the labor supply shock might be small and, if existent at all, only temporary.
@@ -344,10 +349,14 @@ Given the significant uncertainty that society faces today, an expedited further
 
 \clearpage
 \appendix
-%\section{Appendix}
-\section{R Code}
+\section{Appendix}
+\addtocontents{toc}{\protect\setcounter{tocdepth}{1}} % prevents the following section from showing up in TOC
+\subsection{R Code}
+\addtocontents{toc}{\protect\setcounter{tocdepth}{2}} % resets default TOC settings
 
 \input{code/lst_cfr.tex}
+
+\input{code/lst_cfr_plot.tex}
 
 \clearpage
 \bibliography{library}
@@ -367,7 +376,7 @@ This thesis has not been used, either in whole or part, for another examination 
 
 \vspace{1cm}
 
-Frankfurt am Main, June 15, 2019
+Frankfurt am Main, June 11, 2019
 
 \includegraphics[scale=0.12]{external/signature.png}\\
 Lukas J\"urgensmeier

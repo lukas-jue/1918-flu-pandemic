@@ -1,4 +1,4 @@
-\begin{lstlisting}[language=R,caption={Data Preparation and Plotting for Figure \ref{fig_cfr}: Case Fatality Rates of Pneumonia and Influenza during the 1918 Flu Pandemic, 1928, and Covid-19 in 2020}, label=lst_cfr]
+\begin{lstlisting}[language=R,caption={Data Preparation Figure \ref{fig_cfr}: Case Fatality Rates of Pneumonia and Influenza during the 1918 Flu Pandemic, 1928, and Covid-19 in 2020}, label=lst_cfr]
 
 # plotting CFR of 1918 flu vs. regular flu --------------------------------
 # based on figure 3, panel C in Taubenberger & Morens (2006)
@@ -52,31 +52,4 @@ select(age, cfr2020) -> df2020_select
 
 df <- full_join(df1918, df1928) %>% mutate(cfr1918 = cfr1918/100, cfr1928 = cfr1928/100) 
 df <- full_join(df, df2020_select)
-
-# plotting ----------------------------------------------------------------
-
-df %>% 
-pivot_longer(cols = cfr1918:cfr2020, names_to = "year", names_prefix = "cfr", values_to = "cfr") %>% 
-drop_na() %>%
-ggplot(aes(age, cfr, color = year, linetype = year, shape = year)) +
-geom_point(size = 2) +
-geom_line() +
-labs(x = "Age", y = "Case Fatality Rate") +
-scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
-scale_x_continuous(breaks = seq(0, 90, 10)) +
-scale_color_manual(name = "",
-labels = c("1918 Flu Pandemic (1918-1919)", "Regular Flu Season (1928-1929)", "Covid-19 (2020)"),
-values = c("black", "#CA0020", "blue")) +
-scale_linetype_manual(labels = c("1918 Flu Pandemic (1918-1919)", "Regular Flu Season (1928-1929)", "Covid-19 (2020)"),
-values = c("solid", "dashed", "dotted")) +
-scale_shape_manual(labels = c("1918 Flu Pandemic (1918-1919)", "Regular Flu Season (1928-1929)", "Covid-19 (2020)"),
-values = c(16, 17, 15)) +
-theme_classic() +
-theme(legend.position = c(0.35, 0.85),
-legend.key.width = unit(3, "line"),
-legend.background = element_rect(fill=scales::alpha(0.1))) +
-guides(linetype = guide_legend(""),
-color = guide_legend(""),
-shape = guide_legend("")) -> p1
-
 \end{lstlisting}
